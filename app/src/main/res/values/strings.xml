@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">BarcodeScanningApp1</string>
     <string name="scan">Scan</string>
+    <string name="scan_instruction">Click the scan button to get the information of the barcode.</string>
+
+    <!--For setProductActivity-->
+    <string name="set_product_instruction">Set the following information for this product.</string>
+    <string name="text_amount">Amount:</string>
+    <string name="amount_holder">Amount</string>
+    <string name="button_add">Add</string>
 </resources>

@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        scanBtn = (Button) findViewById(R.id.scan_button);
-        formatTxt = (TextView) findViewById(R.id.scan_format);
-        contentTxt = (TextView) findViewById(R.id.scan_content);
+        scanBtn = findViewById(R.id.scan_button);
+        formatTxt = findViewById(R.id.scan_format);
+        contentTxt = findViewById(R.id.scan_content);
 
         scanBtn.setOnClickListener(this);
     }
@@ -49,8 +49,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //we have a result
             String scanContent = scanningResult.getContents();
             String scanFormat = scanningResult.getFormatName();
-            formatTxt.setText("FORMAT: " + scanFormat);
-            contentTxt.setText("CONTENT: " + scanContent);
+//            formatTxt.setText("FORMAT: " + scanFormat);
+//            contentTxt.setText("CONTENT: " + scanContent);
+            // take the scanContent to the next page for storing
+            // if this product never exist in the database, goto AddProductActivity
+            // if it is already exist in the database, goto SetProductActivity
+            Intent i = new Intent(this, SetProductActivity.class);
+            i.putExtra("content", scanContent);
+            startActivity(i);
+
         } else {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "No scan data received!", Toast.LENGTH_SHORT);
