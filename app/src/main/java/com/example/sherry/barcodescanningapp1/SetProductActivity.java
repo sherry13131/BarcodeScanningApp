@@ -3,6 +3,7 @@ package com.example.sherry.barcodescanningapp1;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,9 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_product);
 
+        Context context = getApplicationContext();
+        final DriverHelper db = new DriverHelper(context);
+
         contentTxt = findViewById(R.id.scan_content);
         prodName = findViewById(R.id.prodName);
         prod_amount = findViewById(R.id.prod_amount);
@@ -41,6 +45,12 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
         contentTxt.setText("CONTENT: " + scanContent);
 //        prodName.setText("Product: ") // add the product name getting from db
 
+        // search if such id exists
+        if (db.checkItemExist(scanContent)) {
+            prod_name.setEnabled(false);
+            prod_name.setText(db.getItemName(scanContent));
+        };
+
     }
 
     @Override
@@ -54,9 +64,22 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
             Log.d("STATES", prod_amount.getText().toString() + " " + scanContent + " " + prod_name.getText());
             if (prod_amount != null && scanContent != null && prod_name != null) {
                 int amount = Integer.valueOf(prod_amount.getText().toString());
-                String name = prod_name.getText().toString();
-                db.insertItem(scanContent, name, amount);
-                text = "Hello toast! you added sth " + scanContent + " with " + prod_amount.getText();
+                // check if item already exists
+                if (db.checkItemExist(scanContent)) {
+                    // update amount
+                    int old_amount = db.getItemAmount(scanContent);
+                    int new_amount = old_amount + amount;
+                    if (db.updateItemAmount(scanContent, new_amount) == true) {
+                        text = "Successfully updated item " + scanContent + " to " + new_amount;
+                    } else {
+                        text = "updated fail...";
+                    }
+                } else {
+                    // insert new item
+                    String name = prod_name.getText().toString();
+                    db.insertItem(scanContent, name, amount);
+                    text = "Hello toast! you added sth " + scanContent + " with " + prod_amount.getText();
+                }
             } else {
                 text = "Something wrong...";
             }

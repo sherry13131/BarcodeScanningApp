@@ -30,17 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        db.insertItem("222222222225", "cool", 10);
-//        List<String> items = db.getItemList();
-//        if (items.size() > 0 && items != null) {
-//            Log.d("STATE", items.toString());
-//            Log.d("STATE", "printinggggggggggggggggggggggggggggggggggggg");
-//        } else {
-//            Log.d("CREATION", "nothing here");
-//        }
-
-//        db.close();
-
         scanBtn = findViewById(R.id.scan_button);
         formatTxt = findViewById(R.id.scan_format);
         contentTxt = findViewById(R.id.scan_content);

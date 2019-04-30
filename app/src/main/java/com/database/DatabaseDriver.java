@@ -61,8 +61,31 @@ public class DatabaseDriver extends SQLiteOpenHelper {
         return sqLiteDatabase.insert("ITEMS", null, contentValues);
     }
 
+    /*
+    only for testing
+     */
     public Cursor getItem() {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         return sqLiteDatabase.rawQuery("SELECT NAME FROM ITEMS", null);
     }
+
+    /*
+    get details of an item
+    INPUT: item ID
+    OUTPUT: Cursor of item
+     */
+    public Cursor getItemDetails(String id) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        return sqLiteDatabase.rawQuery("SELECT * FROM ITEMS WHERE ID = ?",
+                new String[]{String.valueOf(id)});
+    }
+
+    protected boolean updateItemAmount(String id, int amount) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("AMOUNT", amount);
+        return sqLiteDatabase.update("ITEMS", contentValues, "ID = ?", new String[]{String.valueOf(id)})
+                > 0;
+    }
+
 }

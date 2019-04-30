@@ -42,4 +42,44 @@ public class DriverHelper extends DatabaseDriver {
         return items;
     }
 
+    public Cursor getItemDetails(String id) {
+        Cursor item = super.getItemDetails(id);
+        return item;
+    }
+
+    public Boolean checkItemExist(String id) {
+        Cursor cursor =this.getItemDetails(id);
+
+        if (cursor.moveToNext()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getItemName(String id) {
+        String name = null;
+        Cursor cursor = this.getItemDetails(id);
+
+        while (cursor.moveToNext()) {
+            name = cursor.getString(cursor.getColumnIndex("NAME"));
+        }
+        return name;
+    }
+
+    public int getItemAmount(String id) {
+        int amount = -1;
+        Cursor cursor = this.getItemDetails(id);
+
+        while (cursor.moveToNext()) {
+            amount = cursor.getInt(cursor.getColumnIndex("AMOUNT"));
+        }
+        return amount;
+    }
+
+    public boolean updateItemAmount(String id, int amount) {
+        boolean updated = super.updateItemAmount(id, amount);
+        return updated;
+    }
+
 }
