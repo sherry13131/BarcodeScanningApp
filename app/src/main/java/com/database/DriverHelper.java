@@ -3,10 +3,13 @@ package com.database;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.sherry.barcodescanningapp1.objects.Item;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DriverHelper extends DatabaseDriver {
@@ -42,11 +45,19 @@ public class DriverHelper extends DatabaseDriver {
         return items;
     }
 
+    /*
+    get an item details
+     */
     public Cursor getItemDetails(String id) {
         Cursor item = super.getItemDetails(id);
         return item;
     }
 
+    /*
+    check if an item exist
+    INPUT: string id
+    OUTPUT: boolean
+     */
     public Boolean checkItemExist(String id) {
         Cursor cursor =this.getItemDetails(id);
 
@@ -57,6 +68,11 @@ public class DriverHelper extends DatabaseDriver {
         }
     }
 
+    /*
+    get name of an item
+    INPUT: String id
+    OUTPUT: String name of the item
+     */
     public String getItemName(String id) {
         String name = null;
         Cursor cursor = this.getItemDetails(id);
@@ -67,6 +83,11 @@ public class DriverHelper extends DatabaseDriver {
         return name;
     }
 
+    /*
+    get the amount of an item
+    INPUT: String id
+    OUTPUT: int amount of the item
+     */
     public int getItemAmount(String id) {
         int amount = -1;
         Cursor cursor = this.getItemDetails(id);
@@ -77,6 +98,23 @@ public class DriverHelper extends DatabaseDriver {
         return amount;
     }
 
+    public List<Item> getItemsDetailsHelper() {
+        Cursor itemCursor = super.getItemsDetails();
+        List<Item> items = new ArrayList<Item>();
+        while (itemCursor.moveToNext()) {
+            Item item = new Item(String.valueOf(itemCursor.getColumnIndex("ID")),
+                    String.valueOf(itemCursor.getColumnIndex("NAME")),
+                    itemCursor.getColumnIndex("AMOUNT"));
+            items.add(item);
+        }
+        return items;
+    }
+
+    /*
+    update the amount of an item
+    INPUT: String item id, int new amount
+    OUTPUT: boolean updated
+     */
     public boolean updateItemAmount(String id, int amount) {
         boolean updated = super.updateItemAmount(id, amount);
         return updated;

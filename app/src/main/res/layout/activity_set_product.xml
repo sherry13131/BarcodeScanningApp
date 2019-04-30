@@ -78,12 +78,6 @@
             android:inputType="number"
             tools:text="@string/amount_holder" />
 
-        <TextView
-            android:id="@+id/temp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
     </LinearLayout>
 
     <Button

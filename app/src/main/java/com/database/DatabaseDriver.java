@@ -39,7 +39,10 @@ public class DatabaseDriver extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE ITEMS "
                 + "(ID TEXT PRIMARY KEY NOT NULL,"
                 + "NAME TEXT NOT NULL,"
-                + "AMOUNT INT NOT NULL)");
+                + "AMOUNT INT NOT NULL,"
+                + "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+                + "update_at NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+
         this.mDefaultWritableDatabase = sqLiteDatabase;
     }
 
@@ -78,6 +81,11 @@ public class DatabaseDriver extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         return sqLiteDatabase.rawQuery("SELECT * FROM ITEMS WHERE ID = ?",
                 new String[]{String.valueOf(id)});
+    }
+
+    public Cursor getItemsDetails() {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        return sqLiteDatabase.rawQuery("SELECT * FROM ITEMS ORDER BY NAME", null);
     }
 
     protected boolean updateItemAmount(String id, int amount) {

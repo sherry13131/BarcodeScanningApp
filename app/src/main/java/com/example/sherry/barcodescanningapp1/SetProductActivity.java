@@ -34,7 +34,7 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
         prodName = findViewById(R.id.prodName);
         prod_amount = findViewById(R.id.prod_amount);
         prod_name = findViewById(R.id.prod_name);
-        temp = findViewById(R.id.temp);
+//        temp = findViewById(R.id.temp);
         button_add = findViewById(R.id.button_add);
         button_add.setOnClickListener(this);
 
