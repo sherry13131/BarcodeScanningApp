@@ -1,17 +1,24 @@
 package com.example.sherry.barcodescanningapp1;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.database.DriverHelper;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +29,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        db.insertItem("222222222225", "cool", 10);
+//        List<String> items = db.getItemList();
+//        if (items.size() > 0 && items != null) {
+//            Log.d("STATE", items.toString());
+//            Log.d("STATE", "printinggggggggggggggggggggggggggggggggggggg");
+//        } else {
+//            Log.d("CREATION", "nothing here");
+//        }
+
+//        db.close();
 
         scanBtn = findViewById(R.id.scan_button);
         formatTxt = findViewById(R.id.scan_format);

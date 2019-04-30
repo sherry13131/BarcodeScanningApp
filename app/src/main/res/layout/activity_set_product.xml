@@ -49,6 +49,21 @@
         app:layout_constraintTop_toBottomOf="@+id/prodName">
 
         <TextView
+            android:id="@+id/text-name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_product_name"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/prod_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            tools:text="@string/product_name_holder" />
+
+        <TextView
             android:id="@+id/text-amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +77,12 @@
             android:ems="10"
             android:inputType="number"
             tools:text="@string/amount_holder" />
+
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
     </LinearLayout>
 
