@@ -2,6 +2,7 @@ package com.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.sherry.barcodescanningapp1.objects.Item;
 
@@ -59,7 +60,7 @@ public class DriverHelper extends DatabaseDriver {
     OUTPUT: boolean
      */
     public Boolean checkItemExist(String id) {
-        Cursor cursor =this.getItemDetails(id);
+        Cursor cursor = this.getItemDetails(id);
 
         if (cursor.moveToNext()) {
             return true;
@@ -102,10 +103,25 @@ public class DriverHelper extends DatabaseDriver {
         Cursor itemCursor = super.getItemsDetails();
         List<Item> items = new ArrayList<Item>();
         while (itemCursor.moveToNext()) {
-            Item item = new Item(String.valueOf(itemCursor.getColumnIndex("ID")),
-                    String.valueOf(itemCursor.getColumnIndex("NAME")),
-                    itemCursor.getColumnIndex("AMOUNT"));
+            Item item = new Item(String.valueOf(itemCursor.getString(itemCursor.getColumnIndex("ID"))),
+                    String.valueOf(itemCursor.getString(itemCursor.getColumnIndex("NAME"))),
+                    itemCursor.getInt(itemCursor.getColumnIndex("AMOUNT")));
             items.add(item);
+
+        }
+        return items;
+    }
+
+    public Item[] getItemsDetailsArrayHelper() {
+        Cursor itemCursor = super.getItemsDetails();
+        Item items[] = {};
+        int i = 0;
+        while (itemCursor.moveToNext()) {
+            Item item = new Item(String.valueOf(itemCursor.getString(itemCursor.getColumnIndex("ID"))),
+                    String.valueOf(itemCursor.getString(itemCursor.getColumnIndex("NAME"))),
+                    itemCursor.getInt(itemCursor.getColumnIndex("AMOUNT")));
+            items[i] = item;
+            i += 1;
         }
         return items;
     }

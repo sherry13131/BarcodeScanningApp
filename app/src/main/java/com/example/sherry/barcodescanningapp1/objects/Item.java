@@ -10,4 +10,16 @@ public class Item {
         prod_name = name;
         prod_amount = amount;
     }
+
+    public String getId() {
+        return prod_id;
+    }
+
+    public String getName() {
+        return prod_name;
+    }
+
+    public int getProdAmount() {
+        return prod_amount;
+    }
 }
