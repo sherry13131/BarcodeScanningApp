@@ -1,6 +1,7 @@
 package com.example.sherry.barcodescanningapp1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -61,9 +62,12 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
             final DriverHelper db = new DriverHelper(context);
             CharSequence text;
             boolean inserted = false;
-            Log.d("STATES", prod_amount.getText() + " " + scanContent + " " + prod_name.getText());
+            Log.d("STATES", prod_amount.getText() + " " + scanContent
+                    + " " + prod_name.getText());
 
-            if (!prod_amount.getText().toString().matches("") && scanContent != null && prod_name != null) {
+            if (!prod_amount.getText().toString().matches("")
+                    && Integer.parseInt(prod_amount.getText().toString()) < 0
+                    && scanContent != null && prod_name != null) {
                 int amount = Integer.valueOf(prod_amount.getText().toString());
                 // check if item already exists
                 if (db.checkItemExist(scanContent)) {
@@ -83,7 +87,7 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
                     text = "Hello toast! you added sth " + scanContent + " with " + prod_amount.getText();
                 }
             } else {
-                text = "You have to fill in all the fields";
+                text = "You must fill in all the fields correctly";
             }
 
             int duration = Toast.LENGTH_SHORT;

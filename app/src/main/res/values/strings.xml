@@ -13,6 +13,7 @@
     <string name="amount_holder">Amount</string>
     <string name="button_add">Add</string>
     <string name="button_modify">Modify</string>
+    <string name="button_update">Update</string>
     <string name="barcode_num">Barcode number:</string>
     <string name="barcode_num_placeholder">Barcode number</string>
 
