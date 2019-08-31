@@ -5,6 +5,7 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,11 +13,9 @@ import android.widget.TextView;
 import com.example.sherry.barcodescanningapp1.objects.Item;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class CustomAdapter extends BaseAdapter {
     Context context;
-//    Item itemList[];
     List<Item> itemList;
     LayoutInflater inflter;
 
@@ -47,7 +46,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView itemName = (TextView) view.findViewById(R.id.textView1);
 //        TextView itemId = (TextView) view.findViewById(R.id.icon);
         itemName.setText(itemList.get(i).getName());
-//        icon.setImageResource(flags[i]);
         return view;
     }
+
 }

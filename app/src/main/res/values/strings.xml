@@ -6,12 +6,16 @@
 
     <!--For setProductActivity-->
     <string name="set_product_instruction">Set the following information for this product.</string>
+    <string name="product_desc">Product descriptions are as follow</string>
     <string name="text_product_name">Product name:</string>
     <string name="product_name_holder">Name</string>
     <string name="text_amount">Amount:</string>
     <string name="amount_holder">Amount</string>
     <string name="button_add">Add</string>
-    
+    <string name="button_modify">Modify</string>
+    <string name="barcode_num">Barcode number:</string>
+    <string name="barcode_num_placeholder">Barcode number</string>
+
     <!--For itemListActivity-->
     <string name="item_list_title">List of all items</string>
 

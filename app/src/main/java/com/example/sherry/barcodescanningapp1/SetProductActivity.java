@@ -60,9 +60,10 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
             Context context = getApplicationContext();
             final DriverHelper db = new DriverHelper(context);
             CharSequence text;
+            boolean inserted = false;
+            Log.d("STATES", prod_amount.getText() + " " + scanContent + " " + prod_name.getText());
 
-            Log.d("STATES", prod_amount.getText().toString() + " " + scanContent + " " + prod_name.getText());
-            if (prod_amount != null && scanContent != null && prod_name != null) {
+            if (!prod_amount.getText().toString().matches("") && scanContent != null && prod_name != null) {
                 int amount = Integer.valueOf(prod_amount.getText().toString());
                 // check if item already exists
                 if (db.checkItemExist(scanContent)) {
@@ -78,10 +79,11 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
                     // insert new item
                     String name = prod_name.getText().toString();
                     db.insertItem(scanContent, name, amount);
+                    inserted = true;
                     text = "Hello toast! you added sth " + scanContent + " with " + prod_amount.getText();
                 }
             } else {
-                text = "Something wrong...";
+                text = "You have to fill in all the fields";
             }
 
             int duration = Toast.LENGTH_SHORT;
@@ -92,7 +94,9 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
             List<String> items = db.getItemList();
             Log.d("CREATION", items.toString());
             db.close();
-            finish();
+            if (inserted) {
+                finish();
+            }
         }
     }
 }

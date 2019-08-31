@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetProductActivity">
+    tools:context=".ItemContentActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -12,41 +12,40 @@
         android:layout_height="39dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="@string/set_product_instruction"
+        android:text="@string/product_desc"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/scan_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/prodName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scan_content" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="398dp"
         android:layout_height="292dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:padding="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prodName">
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="@string/barcode_num"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/prod_barcode2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="10dp"
+            android:text="@string/barcode_num_placeholder" />
 
         <TextView
             android:id="@+id/text-name"
@@ -57,16 +56,15 @@
             android:text="@string/text_product_name"
             android:textColor="@android:color/black" />
 
-        <EditText
-            android:id="@+id/prod_name"
+        <TextView
+            android:id="@+id/prod_name2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
+            android:paddingBottom="10dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            tools:text="@string/product_name_holder"
-            android:importantForAutofill="no" />
+            android:paddingTop="10dp"
+            android:text="@string/product_name_holder" />
 
         <TextView
             android:id="@+id/text-amount"
@@ -77,27 +75,26 @@
             android:text="@string/text_amount"
             android:textColor="@android:color/black" />
 
-        <EditText
-            android:id="@+id/prod_amount"
+        <TextView
+            android:id="@+id/prod_amount2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
+            android:paddingBottom="10dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            tools:text="@string/amount_holder"
-            android:importantForAutofill="no" />
+            android:paddingTop="10dp"
+            android:text="@string/amount_holder" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_add"
+        android:id="@+id/button_modify_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/button_add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        android:text="@string/button_modify"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout >
