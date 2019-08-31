@@ -66,7 +66,7 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
                     + " " + prod_name.getText());
 
             if (!prod_amount.getText().toString().matches("")
-                    && Integer.parseInt(prod_amount.getText().toString()) < 0
+                    && Integer.parseInt(prod_amount.getText().toString()) > 0
                     && scanContent != null && prod_name != null) {
                 int amount = Integer.valueOf(prod_amount.getText().toString());
                 // check if item already exists
@@ -76,6 +76,7 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
                     int new_amount = old_amount + amount;
                     if (db.updateItemAmount(scanContent, new_amount) == true) {
                         text = "Successfully updated item " + scanContent + " to " + new_amount;
+                        inserted = true;
                     } else {
                         text = "updated fail...";
                     }
