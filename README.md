@@ -1,5 +1,5 @@
 # Products organizing app
-An app that help organizing your products. Records the products by reading its barcode/QR code.
+A mobile app that helps organizing your products. Records the products by reading its barcode/QR code.
 
 # Technologies
 * Android Studio
