@@ -88,10 +88,20 @@ public class DatabaseDriver extends SQLiteOpenHelper {
         return sqLiteDatabase.rawQuery("SELECT * FROM ITEMS ORDER BY NAME", null);
     }
 
+    // ------------------------------------ UPDATE ------------------------------------------------
+
     protected boolean updateItemAmount(String id, int amount) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("AMOUNT", amount);
+        return sqLiteDatabase.update("ITEMS", contentValues, "ID = ?", new String[]{String.valueOf(id)})
+                > 0;
+    }
+
+    protected boolean updateItemName(String id, String name) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Name", name);
         return sqLiteDatabase.update("ITEMS", contentValues, "ID = ?", new String[]{String.valueOf(id)})
                 > 0;
     }

@@ -55,4 +55,10 @@ public class ItemContentActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ItemListActivity.class);
+        startActivity(intent);
+    }
 }

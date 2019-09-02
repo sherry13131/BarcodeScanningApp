@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.println(view.getId());
             //scan
             IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-            scanIntegrator.initiateScan(IntentIntegrator.PRODUCT_CODE_TYPES,-1);
+            scanIntegrator.initiateScan(IntentIntegrator.ONE_D_CODE_TYPES,-1);
         } else if(view.getId()==R.id.item_list_btn){
             System.out.println(view.getId());
             // switch page to item list pages

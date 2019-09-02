@@ -126,6 +126,8 @@ public class DriverHelper extends DatabaseDriver {
         return items;
     }
 
+    //----------------------------------- UPDATE -------------------------------------------------
+
     /*
     update the amount of an item
     INPUT: String item id, int new amount
@@ -133,6 +135,11 @@ public class DriverHelper extends DatabaseDriver {
      */
     public boolean updateItemAmount(String id, int amount) {
         boolean updated = super.updateItemAmount(id, amount);
+        return updated;
+    }
+
+    public boolean updateItemName(String id, String name) {
+        boolean updated = super.updateItemName(id, name);
         return updated;
     }
 
