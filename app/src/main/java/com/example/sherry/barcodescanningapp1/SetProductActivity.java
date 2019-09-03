@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class SetProductActivity extends AppCompatActivity implements View.OnClickListener {
 
+    final int PICK_FROM_GALLERY = 0, PICK_FROM_CAMERA = 1;
     private String scanContent;
     private Button button_add, button_add_gallery, button_add_camera;
     private TextView contentTxt, prodName, temp, prod_image_name;
@@ -62,18 +64,6 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
             prod_name.setEnabled(false);
             prod_name.setText(db.getItemName(scanContent));
         }
-
-//        button_add_gallery.setOnClickListener(new Button.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//                // TODO Auto-generated method stub
-//                Intent intent = new Intent(Intent.ACTION_PICK,
-//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(intent, 0);
-//            }
-//        });
-
     }
 
     @Override
@@ -127,7 +117,12 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
         } else if (view.getId() == R.id.button_add_gallery) {
             Intent intent = new Intent(Intent.ACTION_PICK,
                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, 0);
+            startActivityForResult(intent, PICK_FROM_GALLERY);
+        } else if (view.getId() == R.id.button_add_camera) {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, PICK_FROM_CAMERA);
+            }
         }
     }
 
@@ -136,7 +131,7 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
+        if (requestCode == PICK_FROM_GALLERY && resultCode == RESULT_OK) {
             Uri targetUri = data.getData();
             prod_image_name.setText(targetUri.toString());
             Bitmap bitmap;
@@ -147,6 +142,10 @@ public class SetProductActivity extends AppCompatActivity implements View.OnClic
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        } else if (requestCode == PICK_FROM_CAMERA && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            targetImage.setImageBitmap(imageBitmap);
         }
     }
 }
