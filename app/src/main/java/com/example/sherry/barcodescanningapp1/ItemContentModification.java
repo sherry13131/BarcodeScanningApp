@@ -37,11 +37,6 @@ public class ItemContentModification extends AppCompatActivity implements View.O
         // set update btn function
         final Button update_btn = findViewById(R.id.button_update);
         update_btn.setOnClickListener(this);
-//        update_btn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
         // do the upload picture as well?
     }

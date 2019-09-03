@@ -16,6 +16,10 @@
     <string name="button_update">Update</string>
     <string name="barcode_num">Barcode number:</string>
     <string name="barcode_num_placeholder">Barcode number</string>
+    <string name="product_image">Image:</string>
+    <string name="product_image_none">No image selected</string>
+    <string name="product_image_add_btn">Choose from gallery</string>
+    <string name="product_image_camera_btn">Take a picture</string>
 
     <!--For itemListActivity-->
     <string name="item_list_title">List of all items</string>

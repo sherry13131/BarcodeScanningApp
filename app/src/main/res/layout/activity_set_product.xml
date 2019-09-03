@@ -40,33 +40,13 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="398dp"
-        android:layout_height="292dp"
+        android:layout_height="410dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:padding="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prodName">
-
-        <TextView
-            android:id="@+id/text-name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:text="@string/text_product_name"
-            android:textColor="@android:color/black" />
-
-        <EditText
-            android:id="@+id/prod_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:hint="@string/product_name_holder"
-            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/text-amount"
@@ -78,15 +58,85 @@
             android:textColor="@android:color/black" />
 
         <EditText
+            android:id="@+id/prod_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="@string/product_name_holder"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingRight="24dp" />
+
+        <TextView
+            android:id="@+id/text-name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="@string/text_product_name"
+            android:textColor="@android:color/black" />
+
+        <EditText
             android:id="@+id/prod_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:ems="10"
+            android:hint="@string/amount_holder"
+            android:importantForAutofill="no"
             android:inputType="number"
+            android:paddingRight="24dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            android:hint="@string/amount_holder"
-            android:importantForAutofill="no" />
+            android:text="@string/product_image"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/prod_image_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="@string/product_image_none" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:orientation="horizontal"
+            android:paddingEnd="24dp"
+            android:paddingStart="24dp"
+            android:paddingTop="10dp">
+
+            <Button
+                android:id="@+id/button_add_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="@string/product_image_add_btn" />
+
+            <Button
+                android:id="@+id/button_add_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="@string/product_image_camera_btn" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            tools:srcCompat="@tools:sample/avatars[1]" />
 
     </LinearLayout>
 
@@ -94,8 +144,8 @@
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="8dp"
         android:text="@string/button_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
