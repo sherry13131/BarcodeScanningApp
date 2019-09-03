@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.support.constraint.solver.widgets.Helper;
+
+import com.example.sherry.barcodescanningapp1.HelperFuntion;
 
 import java.math.BigDecimal;
 
@@ -14,13 +18,14 @@ import java.math.BigDecimal;
 
 public class DatabaseDriver extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "scanning_app.db";
     private SQLiteDatabase mDefaultWritableDatabase = null;
 
+    private static final String DATABASE_ALTER_ITEMS_1 = "ALTER TABLE ITEMS ADD COLUMN IMAGE BLOB;";
+
     public DatabaseDriver(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
     }
 
     @Override
@@ -48,9 +53,12 @@ public class DatabaseDriver extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ITEMS");
+        if (oldVersion < 2) {
+            sqLiteDatabase.execSQL(DATABASE_ALTER_ITEMS_1);
+        }
+//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ITEMS");
 
-        this.mDefaultWritableDatabase = sqLiteDatabase;
+//        this.mDefaultWritableDatabase = sqLiteDatabase;
 //        onCreate(this.mDefaultWritableDatabase);
     }
 
@@ -63,6 +71,18 @@ public class DatabaseDriver extends SQLiteOpenHelper {
         contentValues.put("AMOUNT", amount);
         return sqLiteDatabase.insert("ITEMS", null, contentValues);
     }
+
+    protected long insertImage(String id, Bitmap img) {
+        byte[] data = HelperFuntion.getBitmapArray(img);
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID", id);
+        contentValues.put("IMAGE", data);
+        return sqLiteDatabase.insert("ITEMS", null, contentValues);
+    }
+
+    //------------------------ GET ---------------------------------------------------------------
 
     /*
     only for testing

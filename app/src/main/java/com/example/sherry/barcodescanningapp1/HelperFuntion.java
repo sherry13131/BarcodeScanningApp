@@ -1,6 +1,10 @@
 package com.example.sherry.barcodescanningapp1;
 
+import android.graphics.Bitmap;
+
 import com.example.sherry.barcodescanningapp1.objects.Item;
+
+import java.io.ByteArrayOutputStream;
 
 public class HelperFuntion {
     public static Boolean checkItemObject(Item item) {
@@ -38,5 +42,11 @@ public class HelperFuntion {
             return true;
         }
         return false;
+    }
+
+    public static byte[] getBitmapArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
     }
 }
